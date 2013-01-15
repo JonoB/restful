@@ -50,13 +50,13 @@ Restful::make('products', 'ProductsController');
 
 This will automatically create a whole bunch of restful routes for you as follows:
 ```
-Route::get('products/{id}/edit', array('as' => 'ProductEdit', 'uses' => 'products@edit');
-Route::get('products/add', array('as' => 'ProductAdd', 'uses' => 'products@create');
-Route::get('products/{id}', array('as' => 'Product', 'uses' => 'products@show');
-Route::get('products', array('as' => 'Products', 'uses' => 'products@index');
-Route::post('products', array('as' => 'ProductStore', 'uses' => 'products@store');
-Route::put('products/{id}', array('as' => 'ProductUpdate', 'uses' => 'products@update');
-Route::delete('products/{id}', array('as' => 'ProductDelete', 'uses' => 'products@destroy');
+Route::get('products/{id}/edit', array('as' => 'ProductEdit', 'uses' => 'ProductsController@edit');
+Route::get('products/add', array('as' => 'ProductAdd', 'uses' => 'ProductsController@create');
+Route::get('products/{id}', array('as' => 'Product', 'uses' => 'ProductsController@show');
+Route::get('products', array('as' => 'Products', 'uses' => 'ProductsController@index');
+Route::post('products', array('as' => 'ProductStore', 'uses' => 'ProductsController@store');
+Route::put('products/{id}', array('as' => 'ProductUpdate', 'uses' => 'ProductsController@update');
+Route::delete('products/{id}', array('as' => 'ProductDelete', 'uses' => 'ProductsController@destroy');
 ```
 
 ## Nested Routes
@@ -79,16 +79,17 @@ class Categories_ProductsController extends SiteController
 ```
 
 This would create the following restful routes for you:
-Route::get('products/{product_id}/categories/{id}/edit', array('as' => 'ProductCategoryEdit', 'uses' => 'products.categories@edit');
-Route::get('products/{product_id}/categories/add', array('as' => 'ProductCommentAdd', 'uses' => 'products.categories@create');
-Route::get('products/{product_id}/categories/{id}', array('as' => 'ProductCategory', 'uses' => 'products.categories@show');
-Route::get('products/{product_id}/categories', array('as' => 'ProductCategories', 'uses' => 'products.categories@index');
-Route::post('products/{product_id}/categories', array('as' => 'ProductCategoryAdd', 'uses' => 'products.categories@store');
-Route::put('products/{product_id}/categories/{id}', array('as' => 'ProductCategoryUpdate', 'uses' => 'products.categories@update');
-Route::delete('products/{product_id}/categories/{id}', array('as' => 'ProductCategoryDelete', 'uses' => 'products.categories@destroy');
+```php
+Route::get('products/{product_id}/categories/{id}/edit', array('as' => 'ProductCategoryEdit', 'uses' => 'products.CategoriesController@edit');
+Route::get('products/{product_id}/categories/add', array('as' => 'ProductCommentAdd', 'uses' => 'products.CategoriesController@create');
+Route::get('products/{product_id}/categories/{id}', array('as' => 'ProductCategory', 'uses' => 'products.CategoriesController@show');
+Route::get('products/{product_id}/categories', array('as' => 'ProductCategories', 'uses' => 'products.CategoriesController@index');
+Route::post('products/{product_id}/categories', array('as' => 'ProductCategoryAdd', 'uses' => 'products.CategoriesController@store');
+Route::put('products/{product_id}/categories/{id}', array('as' => 'ProductCategoryUpdate', 'uses' => 'products.CategoriesController@update');
+Route::delete('products/{product_id}/categories/{id}', array('as' => 'ProductCategoryDelete', 'uses' => 'products.CategoriesController@destroy');
 ```
 
-#### All controllers in root controllers directory
+#### Controllers in root controllers directory
 You can, of course, still have a nested route that routes to the main controllers folder if you wish:
 ```php
 Restful::make('products.categories', 'CategoriesController');
@@ -101,13 +102,15 @@ class CategoriesController extends SiteController
 ```
 
 This would create the following restful routes for you:
-Route::get('products/{product_id}/categories/{id}/edit', array('as' => 'ProductCategoryEdit', 'uses' => 'categories@edit');
-Route::get('products/{product_id}/categories/add', array('as' => 'ProductCommentAdd', 'uses' => 'categories@create');
-Route::get('products/{product_id}/categories/{id}', array('as' => 'ProductCategory', 'uses' => 'categories@show');
-Route::get('products/{product_id}/categories', array('as' => 'ProductCategories', 'uses' => 'categories@index');
-Route::post('products/{product_id}/categories', array('as' => 'ProductCategoryAdd', 'uses' => 'categories@store');
-Route::put('products/{product_id}/categories/{id}', array('as' => 'ProductCategoryUpdate', 'uses' => 'categories@update');
-Route::delete('products/{product_id}/categories/{id}', array('as' => 'ProductCategoryDelete', 'uses' => 'categories@destroy');
+```php
+Route::get('products/{product_id}/categories/{id}/edit', array('as' => 'ProductCategoryEdit', 'uses' => 'CategoriesController@edit');
+Route::get('products/{product_id}/categories/add', array('as' => 'ProductCommentAdd', 'uses' => 'CategoriesController@create');
+Route::get('products/{product_id}/categories/{id}', array('as' => 'ProductCategory', 'uses' => 'CategoriesController@show');
+Route::get('products/{product_id}/categories', array('as' => 'ProductCategories', 'uses' => 'CategoriesController@index');
+Route::post('products/{product_id}/categories', array('as' => 'ProductCategoryAdd', 'uses' => 'CategoriesController@store');
+Route::put('products/{product_id}/categories/{id}', array('as' => 'ProductCategoryUpdate', 'uses' => 'CategoriesController@update');
+Route::delete('products/{product_id}/categories/{id}', array('as' => 'ProductCategoryDelete', 'uses' => 'CategoriesController@destroy');
+```
 
 ## Changing the route template
 Restful Routes uses a default template to create the above routes, but you
