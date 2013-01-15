@@ -72,7 +72,7 @@ Restful::make('products.categories', 'products_CategoriesController');
 Note here that the underscore represents a directory seperator, so we would expect the following:
 ```
 // app/controllers/products/CategoriesController.php
-class Categories_ProductsController extends SiteController
+class Products_CategoriesController extends SiteController
 {
 	...
 }
